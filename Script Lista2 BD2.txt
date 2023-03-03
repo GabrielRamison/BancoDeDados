@@ -1,0 +1,56 @@
+create table DEPARTAMENTO(
+	codigo_depto serial not null,
+	nome_depto varchar(50) not null,
+	primary key(codigo_depto)
+	);
+	
+	
+	create table EMPREGADO(
+	codigo_emp serial not null,
+	nome_emp varchar(100) not null,
+	data_locacao date,
+	codigo_depto serial not null,
+	foreign key (codigo_depto) references departamento (codigo_depto) on delete cascade	
+	on update cascade,
+	primary key (codigo_emp)	
+	);
+	
+	
+select * from departamento;
+select * from empregado;
+	
+	
+	
+	
+insert into departamento (Nome_Depto) values ('Almoxarifado'); 
+insert into departamento (Nome_Depto) values ('CAEP'); 
+insert into departamento (Nome_Depto) values ('DAP');  
+insert into departamento (Nome_Depto) values ('Ensino');  
+insert into departamento (Nome_Depto) values ('Extensão');  
+insert into departamento (Nome_Depto) values ('SRA'); 
+insert into departamento (Nome_Depto) values ('TI');  
+insert into departamento (Nome_Depto) values ('Agropecuário');  
+ 
+
+  
+--INSERTS TABELA EMPREGADO
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Cristiano', 1);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Cassandra', 1);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Fabiano', 2);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Guilherme', 2);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Melânia', 2);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Marcelo', 3);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Adriana', 3);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Gabriel', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Marco', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Douglas', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Fábio', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Lucas', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Tadeu', 4);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Camila', 5);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Fabrício', 6);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Débora', 6);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Francisco', 6);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Pablo', 7);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Alcione', 7);
+insert into empregado (Nome_Emp, Codigo_Depto) values ('Luciano', 7);
