@@ -1,0 +1,34 @@
+create table conferencia(
+	codigo_conf serial not null,
+	nome varchar(50) not null,
+	endereco varchar(50),
+	data_instalacao date,
+	primary key(codigo_conf)
+);
+
+--SELECT
+
+select * from CONFERENCIA;
+
+--COMANDO PARA SETAR A DATA NO FORMATO PT-BR NO SGBD POSTGRESLQ 
+
+set datestyle to POSTGRES, DMY;
+
+--INSERTS TABELA CONFERENCIA 
+
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 1', 'Rua A', '10/01/2020');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 2', 'Rua B', '15/01/2020');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 3', 'Rua C', '20/01/2021');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 4', 'Rua A', '15/02/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 5', 'Rua B', '20/02/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 6', 'Rua C', '05/02/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 7', 'Rua D', '10/03/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 8', 'Rua E', '12/03/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 9', 'Rua E', '18/03/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 10', 'Rua A', '10/04/2022');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 11', 'Rua A', '07/01/2023');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 12', 'Rua A', '12/01/2023');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 13', 'Rua B', '16/01/2023');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 14', 'Rua B', '23/01/2023');
+insert into conferencia (Nome, Endereco, Data_instalacao) values ('Conferência 15', 'Rua C', '11/02/2023');
+
