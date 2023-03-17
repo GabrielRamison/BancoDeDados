@@ -1,0 +1,164 @@
+--1) Selecionar todos os empregados. 
+
+SELECT * FROM empregado;
+
+--2) Selecionar todos os departamentos.
+
+SELECT * FROM departamento;
+
+--3) Selecionar o nome de todos os empregados.
+
+SELECT nome_emp FROM empregado;
+
+--4) Selecionar o nome de todos os empregados, ordenando em ordem crescente de nome. 
+
+SELECT nome_emp FROM empregado ORDER BY nome_emp asc;
+
+--5) Selecionar o nome de todos os empregados, ordenando em ordem decrescente de nome. 
+
+SELECT nome_emp FROM empregado ORDER BY nome_emp desc;
+
+--6) Selecionar o nome de todos os departamentos.
+
+SELECT nome_depto FROM departamento;
+
+--7) Selecionar o nome do empregado e o nome do departamento no qual cada empregado trabalha.  
+
+SELECT nome_emp, nome_depto
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto  
+
+
+--8) Selecionar o nome do departamento e o número de empregados em cada departamento, ordenando em ordem decrescente pelo número de empregados por departamento. 
+
+SELECT nome_depto, count(*)
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto
+GROUP BY nome_depto 
+ORDER BY count(*) desc;  
+
+
+--9) Selecionar o nome do departamento e o número de empregados em cada departamento, ordenando em ordem crescente pelo nome de departamento.
+
+SELECT nome_depto, count(*)
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto
+GROUP BY nome_depto 
+ORDER BY nome_depto asc;  
+
+
+--10) Selecionar, sem repetição, os nomes dos departamentos que tenham empregados alocados. 
+
+SELECT distinct nome_depto
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto   
+
+
+--11) Selecionar os nomes dos departamentos que NÃO tenham empregados alocados. 
+
+SELECT nome_depto
+FROM departamento
+WHERE departamento.codigo_depto NOT IN(
+SELECT distinct departamento.codigo_depto
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto)
+
+--OU USANDO O COMANDO EXCEPT 
+
+SELECT nome_depto
+FROM departamento
+EXCEPT
+SELECT distinct departamento.nome_depto
+FROM empregado, departamento
+WHERE departamento.codigo_depto = empregado.codigo_depto
+
+12) Selecionar os nomes dos departamentos e a quantidade de empregados em cada departamento,
+apenas para departamentos com mais de 3 empregados alocados.
+
+select nome_depto, count(*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+having count(*) > 3;
+
+13) Selecionar os nomes dos departamentos e a quantidade de empregados em cada departamento,
+apenas para departamentos com mais de 2 empregados alocados, ordenando em ordem decrescente
+pela quantidade de empregados por departamento.
+
+select nome_depto, count(*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+having count(*) > 2
+order by count(*) desc
+
+14) Selecionar o nome dos empregados que trabalham no departamento denominado “TI”.
+
+select nome_emp 
+from empregado, departamento 
+where empregado.codigo_depto = departamento.codigo_depto and
+nome_depto = 'TI'
+
+
+15) Selecionar o nome dos empregados que trabalham no departamento denominado “TI” ordenando
+em ordem crescente por nome.
+
+select nome_emp 
+from empregado, departamento 
+where empregado.codigo_depto = departamento.codigo_depto and
+nome_depto = 'TI'
+order by nome_emp
+
+16) Selecionar o nome do departamento que possui o menor número de empregados alocados.
+
+select nome_depto, count (*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+order by count(*) asc limit 1;
+
+
+17) Selecionar o nome do departamento que possui o maior número de empregados alocados.
+
+select nome_depto, count (*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+order by count(*) desc limit 1;
+
+
+18) Selecionar o nome do departamento que possui o menor e o maior número de empregados
+alocados, respectivamente.
+
+(select nome_depto, count (*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+order by count(*) asc limit 1)
+UNION ALL
+(select nome_depto, count (*)
+from departamento, empregado
+where departamento.codigo_depto = empregado.codigo_depto
+group by nome_depto
+order by count(*) desc limit 1)
+
+
+19) Selecionar o nome do departamento que o empregado de código “1” está alocado.
+
+select nome_depto
+from empregado, departamento 
+where empregado.codigo_depto = departamento.codigo_depto and
+codigo_emp = '1'
+
+20) Selecionar os nomes dos empregados e os nomes dos departamentos que possuem empregados
+alocados no departamento denominado “Almoxarifado” OU no departamento denominado “TI”,
+ordenando o resultado em ordem crescente pelo nome do departamento e pelo nome de empregado.
+
+select nome_emp, nome_depto
+from empregado, departamento
+where departamento.codigo_depto = empregado.codigo_depto
+and (nome_depto = 'Almoxarifado' or nome_depto = 'TI')
+order by nome_depto , nome_emp;
+
+
+Bom Trabalho! 
