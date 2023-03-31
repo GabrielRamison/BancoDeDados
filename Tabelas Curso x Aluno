@@ -1,0 +1,82 @@
+1)
+select nome_aluno
+from aluno
+where cod_aluno IN
+
+(select cod_aluno
+from aluno, curso
+where curso.cod_curso = aluno.cod_curso and nome_curso = 'Administração');
+2)
+
+select count(*)
+from aluno
+where cod_aluno IN
+
+(select cod_aluno
+from aluno, curso
+where curso.cod_curso = aluno.cod_curso and nome_curso = 'Informática');
+
+3)
+
+select count(*)
+from aluno
+where cod_aluno IN
+
+(select cod_aluno
+from aluno, curso
+where curso.cod_curso = aluno.cod_curso and (nome_curso = 'Informática' OR nome_curso = 'Administração'));
+
+
+4)
+
+select count(*)
+from aluno
+where cod_aluno NOT IN
+
+(select cod_aluno
+from aluno, curso
+where curso.cod_curso = aluno.cod_curso and (nome_curso = 'Informática' OR nome_curso = 'Administração'));
+
+5)
+ 
+select nome_curso,(select count(*) from aluno where
+				   aluno.cod_curso = curso.cod_curso) as quantidade
+				   from curso
+				   order by quantidade desc;
+
+6)
+
+
+
+
+select nome_curso, (select count(*) from aluno where
+				   aluno.cod_curso = curso.cod_curso 
+				   group by nome_curso
+				   having count(*) > 2)
+
+from curso;
+
+
+
+-----
+feito pelo from
+
+
+
+
+
+select nome_curso, quantidade_aluno_curso
+from (select nome_curso, count(*) as quantidade_aluno_curso 
+	  from aluno, curso
+	  where curso.cod_curso = aluno.cod_curso
+	  group by nome_curso
+	  having count(*) >2
+	  order by quantidade_aluno_curso desc) as count_aluno_curso
+				  
+					
+ 
+				  
+					
+7)
+
+foto cel
